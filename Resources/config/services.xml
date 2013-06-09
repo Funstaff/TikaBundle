@@ -28,6 +28,9 @@
         </service>
         <service id="funstaff_tika.wrapper" class="%funstaff_tika.wrapper.class%">
              <argument type="service" id="funstaff_tika.config" />
+             <call method="setLogger">
+                 <argument type="service" id="logger" on-invalid="null" />
+             </call>
         </service>
     </services>
 </container>
