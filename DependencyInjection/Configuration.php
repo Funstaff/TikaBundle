@@ -6,12 +6,24 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
+ * Configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * @author Bertrand Zuchuat <bertrand.zuchuat@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
+    private $debug;
+
+    /**
+     * Constructor
+     *
+     * @param Boolean $debug Whether to use the debug mode
+     */
+    public function  __construct($debug)
+    {
+        $this->debug = (Boolean) $debug;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -19,10 +31,23 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('funstaff_tika');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('tika_path')->isRequired()->end()
+                ->scalarNode('java_path')->end()
+                ->scalarNode('metadata_class')->defaultValue('Funstaff\Tika\Metadata')->end()
+                ->scalarNode('output_format')->defaultValue('xml')
+                    ->validate()
+                        ->ifNotInArray(array('xml', 'html', 'text', 'text-main'))
+                        ->thenInvalid('Not authorized value for output (only xml, html, text and text-main)')
+                    ->end()
+                ->end()
+                ->booleanNode('metadata_only')->defaultValue(false)->end()
+                ->scalarNode('output_encoding')->defaultValue('UTF-8')->end()
+                ->booleanNode('logging')->defaultValue($this->debug)->end()
+            ->end();
 
         return $treeBuilder;
     }

@@ -4,17 +4,30 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="funstaff_tika.example.class">Funstaff\TikaBundle\Example</parameter>
+        <parameter key="funstaff_tika.config.class">Funstaff\Tika\Configuration</parameter>
+        <parameter key="funstaff_tika.wrapper.class">Funstaff\Tika\Wrapper</parameter>
     </parameters>
 
     <services>
-        <service id="funstaff_tika.example" class="%funstaff_tika.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="funstaff_tika.config" class="%funstaff_tika.config.class%">
+            <argument>%funstaff.tika.config.tika_path%</argument>
+            <argument>%funstaff.tika.config.java_path%</argument>
+            <call method="setMetadataClass">
+                <argument>%funstaff.tika.config.metadata_class%</argument>
+            </call>
+            <call method="setOutputFormat">
+                <argument>%funstaff.tika.config.output_format%</argument>
+            </call>
+            <call method="setMetadataOnly">
+                <argument>%funstaff.tika.config.metadata_only%</argument>
+            </call>
+            <call method="setOutputEncoding">
+                <argument>%funstaff.tika.config.output_encoding%</argument>
+            </call>
+        </service>
+        <service id="funstaff_tika.wrapper" class="%funstaff_tika.wrapper.class%">
+             <argument type="service" id="funstaff_tika.config" />
         </service>
     </services>
-    -->
 </container>

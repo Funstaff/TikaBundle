@@ -1,0 +1,14 @@
+{
+    "name": "funstaff/tika-bundle",
+    "description": "Bundle for Apache Tika wrapper",
+    "require": {
+        "funstaff/tika": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bertrand Zuchuat",
+            "email": "bertrand.zuchuat@gmail.com"
+        }
+    ]
+}
