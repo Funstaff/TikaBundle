@@ -16,6 +16,5 @@
     "autoload": {
         "psr-0": { "Funstaff\\TikaBundle": "" }
     },
-    "target-dir": "Funstaff/TikaBundle",
-    "minimun-stability": "dev"
+    "target-dir": "Funstaff/TikaBundle"
 }
