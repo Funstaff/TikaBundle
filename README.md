@@ -2,6 +2,15 @@
 
 A bundle for [Tika wrapper](https://github.com/Funstaff/Tika)
 
+Installation
+------------
+
+To install FunstaffTikaBundle with Composer just run:
+
+```bash
+$ php composer.phar require funstaff/tika-bundle dev-master
+```
+
 Usage
 -----
 
