@@ -16,5 +16,10 @@
     "autoload": {
         "psr-0": { "Funstaff\\TikaBundle": "" }
     },
-    "target-dir": "Funstaff/TikaBundle"
+    "target-dir": "Funstaff/TikaBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
 }
